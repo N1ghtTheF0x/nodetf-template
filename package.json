@@ -1,16 +1,30 @@
 {
     "name": "@nodetf/<name>",
+    "type": "module",
     "version": "1.0.0",
     "description": "",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": ["lib/**/*"],
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./esm/index.d.ts",
+          "default": "./esm/index.js"
+        },
+        "require": {
+          "types": "./cjs/index.d.ts",
+          "default": "./cjs/index.js"
+        }
+      }
+    },
+    "files": ["cjs/**/*","esm/**/*"],
     "scripts": {
-      "test": "ts-node test.ts",
+      "test:cjs": "ts-node --project ./tsconfig.cjs.json test.cts",
+      "test:esm": "ts-node --project ./tsconfig.esm.json test.mts",
       "prebuild": "npm run clean",
-      "build": "tsc --build",
-      "clean": "tsc --build --clean",
-      "prepare": "npm run build"
+      "build:cjs": "tsc --project ./tsconfig.cjs.json",
+      "build:esm": "tsc --project ./tsconfig.esm.json",
+      "build": "npm run build:cjs && npm run build:esm",
+      "clean": "rm -rf ./cjs && rm -rf ./esm",
+      "prepublishOnly": "npm run build"
     },
     "author": "N1ghtTheF0x",
     "license": "MIT",
@@ -21,5 +35,7 @@
     "repository": {
       "type": "git",
       "url": "git+https://github.com/N1ghtTheF0x/nodetf-"
-    }
+    },
+    "types": "./cjs/index.d.ts",
+    "main": "./cjs/index.js"
   }

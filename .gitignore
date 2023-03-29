@@ -106,4 +106,6 @@ dist
 # NodeJS
 
 package-lock.json
-/lib
+/cjs
+/esm
+test*
