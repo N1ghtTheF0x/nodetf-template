@@ -1,29 +1,22 @@
 {
     "name": "@nodetf/<name>",
-    "type": "module",
+    "type": "commonjs",
     "version": "1.0.0",
     "description": "",
     "exports": {
       ".": {
-        "import": {
-          "types": "./esm/index.d.ts",
-          "default": "./esm/index.js"
-        },
         "require": {
-          "types": "./cjs/index.d.ts",
-          "default": "./cjs/index.js"
+          "types": "./types/index.d.ts",
+          "default": "./lib/index.js"
         }
       }
     },
-    "files": ["cjs/**/*","esm/**/*"],
+    "files": ["lib/**/*"],
     "scripts": {
-      "test:cjs": "ts-node --project ./tsconfig.cjs.json test.cts",
-      "test:esm": "ts-node --project ./tsconfig.esm.json test.mts",
+      "test:cjs": "ts-node test.cts",
       "prebuild": "npm run clean",
-      "build:cjs": "tsc --project ./tsconfig.cjs.json",
-      "build:esm": "tsc --project ./tsconfig.esm.json",
-      "build": "npm run build:cjs && npm run build:esm",
-      "clean": "rm -rf ./cjs && rm -rf ./esm",
+      "build": "tsc",
+      "clean": "rm -rf ./lib",
       "prepublishOnly": "npm run build"
     },
     "author": "N1ghtTheF0x",
@@ -36,6 +29,6 @@
       "type": "git",
       "url": "git+https://github.com/N1ghtTheF0x/nodetf-"
     },
-    "types": "./cjs/index.d.ts",
-    "main": "./cjs/index.js"
+    "types": "./types/index.d.ts",
+    "main": "./lib/index.js"
   }
