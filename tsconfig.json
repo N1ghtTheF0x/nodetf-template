@@ -11,7 +11,7 @@
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "outDir": "lib",
-        "declarationDir": "types"
+        "declarationDir": "lib"
     },
     "exclude": [
         "node_modules",
